@@ -80,6 +80,7 @@ const App=()=>{
             orbit={orbit}
             newShapes={newShapes}
             loaded={loaded}
+            setLoaded={setLoaded}
             setCanvasRendered={setCanvasRendered}
             setSceneChildren={setSceneChildren}
             setLoaded={setLoaded}

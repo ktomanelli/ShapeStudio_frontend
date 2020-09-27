@@ -1,4 +1,4 @@
-import React, { useRef,useEffect } from 'react'
+import React, { useState,useRef,useEffect } from 'react'
 import {useThree} from 'react-three-fiber'
 import Shapes from './Shapes/Shapes'
 
@@ -29,6 +29,8 @@ const LoadedShape=(props)=>{
 }
 const Scene = (props)=>{
 
+    const [loadTrigger,setLoadTrigger] = useState(false)
+
     const {
         scene,
         camera,
@@ -52,12 +54,18 @@ const Scene = (props)=>{
                 props.deleteObj(obj)
             }
         })
+        console.log('scene cleared')
+        if(props.loaded) {
+            console.log('loaded is true')
+            loadObjects()
+            props.setLoaded(null)
+            console.log('loaded has been set to false')
+        }
     }
 
     const loadObjects=()=>{
+        console.log('inside loadObjects')
         const scene = props.loaded.scene
-
-        // clearScene()
 
         return scene.children.map(obj=>{
             if(obj.type==='Mesh'){
@@ -72,7 +80,7 @@ const Scene = (props)=>{
 
     return (
         <>
-            {props.loaded?  loadObjects() : ''}
+            {props.loaded? clearScene() : ''}
             <gridHelper args={['100','100']}/>
             {props.newShapes?<Shapes setActive={props.setActive} newShapes={props.newShapes} setNewShapes={props.setNewShapes}/>:''}
         </>

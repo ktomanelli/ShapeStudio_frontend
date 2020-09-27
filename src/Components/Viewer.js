@@ -8,6 +8,7 @@ const Viewer = (props)=>{
   const [transformMode,setTransformMode] = useState('translate')
 
   const deleteObj=(shape)=>{
+    console.log('deleting!')
       if(shape.geometry){
         shape.geometry.dispose()
         shape.geometry = undefined
@@ -60,6 +61,7 @@ const Viewer = (props)=>{
         setScene={props.setScene}
         setCamera={props.setCamera}
         deleteObj={deleteObj}
+        setLoaded={props.setLoaded}
         loaded={props.loaded}
         setActive={props.setActive} 
         newShapes={props.newShapes} 
